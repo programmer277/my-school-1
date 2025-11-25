@@ -4,6 +4,10 @@ import { Navbar } from "./components/shared/navbar";
 import HomePage from "./pages/home";
 import StatistikaBitiruvchilarPage from "./pages/statistika-bitiruvchilar-page";
 import FanlarPage from "./pages/fanlar";
+import GalleryImages from "./components/gallery/GalleryImages";
+import RoomsMarqueeGallery from "./components/gallery/RoomsMarqueeGallery";
+import Galleryvideo from "./components/gallery/Galleryvideo";
+import { GalleryMarquee } from "./components/gallery/GalleryMarquee";
 
 function App() {
   return (
@@ -36,6 +40,17 @@ function App() {
               <Navbar />
               <FanlarPage />
               <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/gallery"
+          element={
+            <>
+           <GalleryMarquee/>
+           <GalleryImages/>
+           <RoomsMarqueeGallery/>
+           <Galleryvideo/>
             </>
           }
         />

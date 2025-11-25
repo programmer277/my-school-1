@@ -1,10 +1,11 @@
 "use client";
+
 import React from "react";
 
 type Props = {
   topImgs?: string[];
   bottomImgs?: string[];
-  duration?: number; // sekundlarda
+  duration?: number;
   repeatSets?: number;
 };
 
@@ -21,61 +22,54 @@ export const GalleryMarquee: React.FC<Props> = ({
     "https://cdn.shadcnstudio.com/ss-assets/blocks/marketing/gallery/image-66.png",
     "https://cdn.shadcnstudio.com/ss-assets/blocks/marketing/gallery/image-67.png",
   ],
-  duration = 20,
-  repeatSets = 3,
+  duration = 18,
+  repeatSets = 4,
 }) => {
   const repeatArray = (arr: string[]) =>
     Array.from({ length: repeatSets }).flatMap(() => arr);
 
   return (
-    <section className="relative py-12 sm:py-16 lg:py-24 flex flex-col items-center space-y-12">
-      {/* TOP MARQUEE */}
+    <section className="relative py-20 overflow-hidden bg-gradient-to-br from-pink-400 via-purple-500 to-cyan-600">
+      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+
       <div className="w-full overflow-hidden relative">
         <div
-          className="flex gap-4 sm:gap-6 md:gap-8 animate-marquee hover:pause"
+          className="flex gap-8 animate-marquee"
           style={{ animationDuration: `${duration}s` }}
         >
           {repeatArray(topImgs).map((src, i) => (
             <div key={i} className="flex-none">
               <img
                 src={src}
-                alt={`top-${i}`}
-                className="h-40 w-40 sm:h-48 sm:w-48 md:h-56 md:w-56 lg:h-64 lg:w-64 xl:h-72 xl:w-72 rounded-lg object-cover"
+                alt=""
+                className="h-64 w-64 md:h-80 md:w-80 rounded-3xl object-cover shadow-2xl border-4 border-white/30"
               />
             </div>
           ))}
         </div>
-        {/* Gradient overlay */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-16 md:w-20 bg-gradient-to-r from-white to-transparent"></div>
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-16 md:w-20 bg-gradient-to-l from-white to-transparent"></div>
       </div>
 
-      {/* CENTER TEXT */}
-      <div className="relative z-10 flex items-center justify-center w-full">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center text-black">
+      <div className="relative z-10 text-center py-12">
+        <h2 className="text-6xl md:text-9xl font-black drop-shadow-2xl bg-gradient-to-r from-white via-cyan-100 to-yellow-100 bg-clip-text text-transparent">
           Maktab Galereyasi
         </h2>
       </div>
 
-      {/* BOTTOM MARQUEE */}
       <div className="w-full overflow-hidden relative">
         <div
-          className="flex gap-4 sm:gap-6 md:gap-8 animate-marquee-reverse hover:pause"
+          className="flex gap-8 animate-marquee-reverse"
           style={{ animationDuration: `${duration}s` }}
         >
           {repeatArray(bottomImgs).map((src, i) => (
             <div key={i} className="flex-none">
               <img
                 src={src}
-                alt={`bottom-${i}`}
-                className="h-40 w-40 sm:h-48 sm:w-48 md:h-56 md:w-56 lg:h-64 lg:w-64 xl:h-72 xl:w-72 rounded-lg object-cover"
+                alt=""
+                className="h-64 w-64 md:h-80 md:w-80 rounded-3xl object-cover shadow-2xl border-4 border-white/30"
               />
             </div>
           ))}
         </div>
-        {/* Gradient overlay */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-16 md:w-20 bg-gradient-to-r from-white to-transparent"></div>
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-16 md:w-20 bg-gradient-to-l from-white to-transparent"></div>
       </div>
 
       <style>{`
@@ -83,23 +77,9 @@ export const GalleryMarquee: React.FC<Props> = ({
           0% { transform: translateX(0%); }
           100% { transform: translateX(-50%); }
         }
-        .animate-marquee {
-          animation-name: marquee-horizontal;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
-        }
-        .animate-marquee-reverse {
-          animation-name: marquee-horizontal;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
-          animation-direction: reverse;
-        }
-        .hover\\:pause:hover {
-          animation-play-state: paused;
-        }
+        .animate-marquee { animation: marquee-horizontal linear infinite; }
+        .animate-marquee-reverse { animation: marquee-horizontal linear infinite reverse; }
       `}</style>
     </section>
   );
 };
-
-export default GalleryMarquee;

@@ -1,5 +1,3 @@
-// components/RoomsGallery.tsx  yoki  app/rooms/page.tsx
-
 "use client";
 
 import { useState } from "react";
@@ -31,23 +29,14 @@ export default function RoomsGallery() {
   return (
     <>
       <div className="min-h-screen relative overflow-hidden">
-        {/* 70% XIRALASHTIRILGAN + CHIROYLİ YORQIN ORQA FON */}
         <div className="fixed inset-0 -z-10">
-          {/* Asosiy gradient – 70% xira */}
-          <div className="absolute inset-0 bg-gradient-to-br from-pink-400/70 via-purple-500/70 to-indigo-600/70" />
-          
-          {/* Qo'shimcha layer – xira va blur bilan */}
-          <div className="absolute inset-0 bg-gradient-to-tl from-cyan-400/50 via-teal-500/50 to-emerald-600/50 mix-blend-screen blur-xl" />
-          
-          {/* Yorqin nur effekti – sekin puls */}
-          <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-orange-500/20 blur-3xl animate-pulse opacity-70" />
-          
-          {/* Qora xira qatlam – matn va kartalar yaxshi o‘qilishi uchun */}
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 via-teal-600 to-blue-700 opacity-90" />
+          <div className="absolute inset-0 bg-gradient-to-tl from-cyan-500/60 via-emerald-500/40 to-teal-600/60 mix-blend-screen blur-xl" />
+          <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/30 to-cyan-500/30 blur-3xl animate-pulse" />
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-md" />
         </div>
 
         <div className="relative z-10 pt-16 pb-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          {/* SARLAVHA */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -55,7 +44,7 @@ export default function RoomsGallery() {
             className="text-center mb-20"
           >
             <h1 className="text-6xl sm:text-8xl md:text-9xl font-black tracking-tight drop-shadow-2xl">
-              <span className="bg-gradient-to-r from-white via-cyan-100 to-yellow-100 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-white via-emerald-100 to-cyan-100 bg-clip-text text-transparent">
                 BIZNING XONALAR
               </span>
             </h1>
@@ -74,7 +63,7 @@ export default function RoomsGallery() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
                 onClick={() => setSelectedRoom(room)}
-                className="group relative cursor-pointer rounded-3xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-xl border border-white/30"
+                className="group relative cursor-pointer rounded-3xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-xl border border-white/20"
                 whileHover={{ y: -12, scale: 1.03 }}
               >
                 <div className="aspect-[4/5] relative">
@@ -90,56 +79,71 @@ export default function RoomsGallery() {
                     </h3>
                   </div>
 
-                  <div className="absolute inset-0 rounded-3xl ring-4 ring-transparent group-hover:ring-cyan-300/80 transition-all duration-500 pointer-events-none" />
+                  <div className="absolute inset-0 rounded-3xl ring-4 ring-transparent group-hover:ring-emerald-400/80 transition-all duration-500 pointer-events-none" />
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* LIGHTBOX */}
         <AnimatePresence>
           {selectedRoom && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4"
+              className="fixed inset-0 z-50 flex flex-col items-center justify-center"
               onClick={() => setSelectedRoom(null)}
             >
               <div className="absolute inset-0 bg-black/70 backdrop-blur-3xl" />
-
+        
               <motion.div
-                initial={{ scale: 0.85 }}
-                animate={{ scale: 1 }}
+                initial={{ scale: 0.85, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.85 }}
-                transition={{ type: "spring", damping: 30, stiffness: 300 }}
-                className="relative w-full max-w-5xl"
+                transition={{ type: "spring", damping: 28, stiffness: 300 }}
+                className="relative w-full max-w-5xl mx-4 sm:mx-8"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-black/80 backdrop-blur-2xl border-2 border-white/30">
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-black/60 backdrop-blur-2xl">
+                  <div className="absolute inset-0 rounded-3xl border-8 border-emerald-500/60 pointer-events-none z-10" />
+        
                   <img
                     src={selectedRoom.image}
                     alt={selectedRoom.title}
-                    className="w-full max-h-[85vh] object-contain rounded-3xl"
+                    className="w-full max-h-[78vh] object-cover rounded-3xl"
                   />
-                  <div className="absolute inset-0 rounded-3xl pointer-events-none shadow-[inset_0_0_60px_rgba(255,255,255,0.3)]" />
+        
+                  <div className="absolute inset-0 rounded-3xl pointer-events-none shadow-[inset_0_0_120px_rgba(34,197,94,0.4)] z-20" />
                 </div>
-
-                <div className="absolute -bottom-16 sm:-bottom-20 left-0 right-0 text-center">
-                  <h3 className="text-4xl sm:text-5xl font-black text-white drop-shadow-2xl mb-3">
+        
+                <div className="mt-6 sm:mt-8 text-center px-4">
+                  <h3 className="text-4xl sm:text-6xl md:text-7xl font-black 
+                                 bg-gradient-to-r from-emerald-300 via-cyan-300 to-white 
+                                 bg-clip-text text-transparent drop-shadow-2xl leading-tight">
                     {selectedRoom.title}
                   </h3>
-                  <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto px-4">
+        
+                  <p className="mt-4 text-lg sm:text-xl md:text-2xl text-white/95 font-medium 
+                                max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
                     {selectedRoom.description}
                   </p>
                 </div>
-
+        
                 <button
                   onClick={() => setSelectedRoom(null)}
-                  className="absolute -top-16 right-0 w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 hover:bg-red-700 transition-all"
+                  className="absolute 
+                             top-4 right-4 
+                             sm:top-6 sm:right-6 
+                             md:top-8 md:right-8 
+                             w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 
+                             bg-emerald-600/95 backdrop-blur-md rounded-full 
+                             flex items-center justify-center shadow-2xl 
+                             hover:scale-110 hover:bg-emerald-500 
+                             transition-all duration-300 
+                             border-4 border-white/30 z-50"
                 >
-                  <X className="w-10 h-10 text-white" />
+                  <X className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white font-bold" />
                 </button>
               </motion.div>
             </motion.div>

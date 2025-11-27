@@ -29,8 +29,8 @@ export const GalleryMarquee: React.FC<Props> = ({
     Array.from({ length: repeatSets }).flatMap(() => arr);
 
   return (
-    <section className="relative py-20 overflow-hidden bg-gradient-to-br from-pink-400 via-purple-500 to-cyan-600">
-      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+    <section className="relative py-20 overflow-hidden bg-gradient-to-br from-emerald-500 via-teal-600 to-blue-600">
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
       <div className="w-full overflow-hidden relative">
         <div
@@ -50,7 +50,7 @@ export const GalleryMarquee: React.FC<Props> = ({
       </div>
 
       <div className="relative z-10 text-center py-12">
-        <h2 className="text-6xl md:text-9xl font-black drop-shadow-2xl bg-gradient-to-r from-white via-cyan-100 to-yellow-100 bg-clip-text text-transparent">
+        <h2 className="text-6xl md:text-9xl font-black drop-shadow-2xl bg-gradient-to-r from-white via-emerald-100 to-cyan-100 bg-clip-text text-transparent">
           Maktab Galereyasi
         </h2>
       </div>
